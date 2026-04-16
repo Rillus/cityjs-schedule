@@ -51,7 +51,7 @@ function Intro(props: {data: Data}) {
   const ShareLineupButton = () => {
     return (
       <button onClick={shareLineup} className="Button Button-transparent">
-        Share your lineup
+        Share your schedule
       </button>
     );
   }
@@ -65,7 +65,7 @@ function Intro(props: {data: Data}) {
       gap: '1rem'
     }}>
       <div></div>
-      <h1 className="u-text-center" style={{ margin: 0 }}>My Lineup</h1>
+      <h1 className="u-text-center" style={{ margin: 0 }}>My schedule</h1>
       <div style={{ justifySelf: 'end' }}>
         <HidePastActsToggle 
           hidePastActs={hidePastActs} 
@@ -76,8 +76,8 @@ function Intro(props: {data: Data}) {
     {filteredActData.length === 0 ? (
       <p style={{textAlign: 'center'}}>
         {savedActData.length === 0 
-          ? <>No saved acts yet. <br />Select "Acts" or "Stages" to find add acts to your lineup with the &#9734; button</>
-          : <>No upcoming acts in your lineup.<br />Toggle "Show past" to see all saved acts.</>
+          ? <>No saved sessions yet. <br />Open &quot;Sessions&quot; or &quot;Tracks&quot; and tap &#9734; to add talks to your schedule.</>
+          : <>No upcoming sessions in your schedule.<br />Toggle &quot;Show past&quot; to see everything you saved.</>
         }
       </p>
     ) : (

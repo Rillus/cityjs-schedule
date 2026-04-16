@@ -39,12 +39,12 @@ function Shared(props: {data: Data}) {
   });
 
   return <div>
-    <h1 className="u-text-center">Shared lineup</h1>
-    <p className="u-text-center">Acts shown as per the URL you entered</p>
+    <h1 className="u-text-center">Shared schedule</h1>
+    <p className="u-text-center">Sessions from the link you opened</p>
     {savedActData.length === 0 ? (
       <p style={{textAlign: 'center'}}>
-        No saved acts yet. <br />
-        Select "Acts" or "Stages" to find add acts to your lineup with the &#9734; button
+        No sessions in this link. <br />
+        Open &quot;Sessions&quot; or &quot;Tracks&quot; and save talks with the &#9734; button, then share again.
       </p>
     ) : (
       <ActGrid events={savedActData} options={{showStages: true}}></ActGrid>

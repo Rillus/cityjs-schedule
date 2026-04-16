@@ -1,6 +1,6 @@
 {
-  "short_name": "Glasto 2025",
-  "name": "Line-up, stages and maps for Glastonbury Festival 2025",
+  "short_name": "CityJS London",
+  "name": "CityJS London timetable (offline-friendly)",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,14 +8,9 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "cityjs.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
     }
   ],
   "start_url": ".",
@@ -24,5 +19,5 @@
   "background_color": "#303B4D",
   "orientation": "portrait",
   "scope": "/",
-  "description": "Complete festival guide with offline access to lineups, stages, and maps"
+  "description": "Conference schedule with offline access — update sessions in cityjs-london.json"
 }

@@ -1,0 +1,110 @@
+{
+  "name": "CityJS London",
+  "id": "cityjs-london-2026",
+  "url": "https://london.cityjsconf.org/schedule",
+  "modified": "2026-04-16 (Day 3 tracks from cityjsconf.org)",
+  "timezone": "Europe/London",
+  "locations": [
+    {
+      "name": "Tessl AI HQ",
+      "events": [
+        {"name": "Registration & coffee", "short": "cjs26-d1-reg", "start": "2026-04-15 08:30", "end": "2026-04-15 09:30"},
+        {"name": "Welcome & housekeeping", "short": "cjs26-d1-wel", "start": "2026-04-15 09:30", "end": "2026-04-15 10:00"},
+        {"name": "Keynote: JavaScript in 2026", "short": "cjs26-d1-key", "start": "2026-04-15 10:00", "end": "2026-04-15 11:00"},
+        {"name": "Break", "short": "cjs26-d1-br1", "start": "2026-04-15 11:00", "end": "2026-04-15 11:30"},
+        {"name": "Modern bundling & performance", "short": "cjs26-d1-bun", "start": "2026-04-15 11:30", "end": "2026-04-15 12:30"},
+        {"name": "Lunch", "short": "cjs26-d1-lun", "start": "2026-04-15 12:30", "end": "2026-04-15 13:45"},
+        {"name": "TypeScript patterns at scale", "short": "cjs26-d1-ts", "start": "2026-04-15 13:45", "end": "2026-04-15 14:45"},
+        {"name": "Break", "short": "cjs26-d1-br2", "start": "2026-04-15 14:45", "end": "2026-04-15 15:15"},
+        {"name": "AI-assisted developer workflows", "short": "cjs26-d1-ai", "start": "2026-04-15 15:15", "end": "2026-04-15 16:15"},
+        {"name": "Community & wrap-up", "short": "cjs26-d1-wrap", "start": "2026-04-15 16:15", "end": "2026-04-15 17:00"}
+      ]
+    },
+    {
+      "name": "Workshops",
+      "events": [
+        {"name": "Workshop registration", "short": "cjs26-d2-reg", "start": "2026-04-16 09:00", "end": "2026-04-16 09:30"},
+        {"name": "Deep dive: React Server Components", "short": "cjs26-d2-rsc", "start": "2026-04-16 09:30", "end": "2026-04-16 11:00"},
+        {"name": "Break", "short": "cjs26-d2-br1", "start": "2026-04-16 11:00", "end": "2026-04-16 11:30"},
+        {"name": "Hands-on: testing with Vitest & Playwright", "short": "cjs26-d2-test", "start": "2026-04-16 11:30", "end": "2026-04-16 13:00"},
+        {"name": "Lunch", "short": "cjs26-d2-lun", "start": "2026-04-16 13:00", "end": "2026-04-16 14:00"},
+        {"name": "Deep dive: Node.js & observability", "short": "cjs26-d2-node", "start": "2026-04-16 14:00", "end": "2026-04-16 15:30"},
+        {"name": "Break", "short": "cjs26-d2-br2", "start": "2026-04-16 15:30", "end": "2026-04-16 16:00"},
+        {"name": "Hands-on: Web APIs & PWAs", "short": "cjs26-d2-pwa", "start": "2026-04-16 16:00", "end": "2026-04-16 17:30"}
+      ]
+    },
+    {
+      "name": "Great Hall - Ground Floor",
+      "events": [
+        {"name": "Registration and Breakfast", "short": "cjs26-gh-bre", "start": "2026-04-17 08:30", "end": "2026-04-17 09:15"},
+        {"name": "Start of Track 1 — Sara Vieira", "short": "cjs26-gh-t1s", "start": "2026-04-17 09:15", "end": "2026-04-17 09:30"},
+        {"name": "The New UX — Tejas Kumar", "short": "cjs26-gh-ux", "start": "2026-04-17 09:30", "end": "2026-04-17 10:00"},
+        {"name": "From Vibe Coding to Vibe Engineering — Kitze", "short": "cjs26-gh-vibe", "start": "2026-04-17 10:00", "end": "2026-04-17 10:25"},
+        {"name": "The New Node.js: Built-in Batteries and the Road Ahead — Matteo Collina", "short": "cjs26-gh-node", "start": "2026-04-17 10:25", "end": "2026-04-17 10:55"},
+        {"name": "Break", "short": "cjs26-gh-br1", "start": "2026-04-17 10:55", "end": "2026-04-17 11:20"},
+        {"name": "Implementing Server Driven UI — Dan Neciu", "short": "cjs26-gh-sdui", "start": "2026-04-17 11:20", "end": "2026-04-17 11:45"},
+        {"name": "Pear - P2Pify all the apps — David Mark Clements", "short": "cjs26-gh-pear", "start": "2026-04-17 11:45", "end": "2026-04-17 12:05"},
+        {"name": "Segmentation fault! Low-level debugging for JS developers — Anna Henningsen", "short": "cjs26-gh-segf", "start": "2026-04-17 12:05", "end": "2026-04-17 12:25"},
+        {"name": "The Other Local-First — Rich Harris", "short": "cjs26-gh-lofi", "start": "2026-04-17 12:25", "end": "2026-04-17 12:45"},
+        {"name": "Video Optimization for the Web: The Missing Piece in Lighthouse — Harshit Budhraja", "short": "cjs26-gh-vid", "start": "2026-04-17 12:45", "end": "2026-04-17 13:05"},
+        {"name": "Lunch", "short": "cjs26-gh-lun", "start": "2026-04-17 13:05", "end": "2026-04-17 14:00"},
+        {"name": "Code Golf - Getting A Hole-in-One-(Liner) — Steven Goodwin", "short": "cjs26-gh-golf", "start": "2026-04-17 14:00", "end": "2026-04-17 14:20"},
+        {"name": "Women in Tech the Panel", "short": "cjs26-gh-wit", "start": "2026-04-17 14:20", "end": "2026-04-17 14:55"},
+        {"name": "Federation of Specialists: From Module Federation to AI Orchestration — Nestor Lopez", "short": "cjs26-gh-fed", "start": "2026-04-17 14:55", "end": "2026-04-17 15:10"},
+        {"name": "Ripple: the Good Parts of React, Svelte, and Solid — Erik Rasmussen", "short": "cjs26-gh-rip", "start": "2026-04-17 15:10", "end": "2026-04-17 15:30"},
+        {"name": "The Dark Side of Micro-Frontends — Luca Mezzalira", "short": "cjs26-gh-mfe", "start": "2026-04-17 15:30", "end": "2026-04-17 15:50"},
+        {"name": "Break", "short": "cjs26-gh-br2", "start": "2026-04-17 15:50", "end": "2026-04-17 16:00"},
+        {"name": "The Future of the AI Bubble (Panel)", "short": "cjs26-gh-aip", "start": "2026-04-17 16:00", "end": "2026-04-17 16:45"},
+        {"name": "JavaScript: The Best Part — Douglas Crockford", "short": "cjs26-gh-doug", "start": "2026-04-17 16:45", "end": "2026-04-17 17:30"}
+      ]
+    },
+    {
+      "name": "Small Hall - Level 1",
+      "events": [
+        {"name": "Breakfast", "short": "cjs26-sh-bre", "start": "2026-04-17 08:30", "end": "2026-04-17 09:55"},
+        {"name": "Start of Track 2 — Tony Edwards", "short": "cjs26-sh-t2s", "start": "2026-04-17 09:55", "end": "2026-04-17 10:00"},
+        {"name": "Beyond the Framework — Daniel Roe", "short": "cjs26-sh-nuxt", "start": "2026-04-17 10:00", "end": "2026-04-17 10:25"},
+        {"name": "React Beyond Components: The Rise of Generative UI — Ruben Casas", "short": "cjs26-sh-gen", "start": "2026-04-17 10:25", "end": "2026-04-17 10:55"},
+        {"name": "Break", "short": "cjs26-sh-br1", "start": "2026-04-17 10:55", "end": "2026-04-17 11:20"},
+        {"name": "Achieving 93% Faster Next.js in (your) Kubernetes with Watt — Paolo Insogna", "short": "cjs26-sh-watt", "start": "2026-04-17 11:20", "end": "2026-04-17 11:45"},
+        {"name": "A personal AI agent, off cloud, for $100 — Alvin Bryan", "short": "cjs26-sh-ai100", "start": "2026-04-17 11:45", "end": "2026-04-17 12:05"},
+        {"name": "OTel You It's Not Just for Backend! — Carly Richmond", "short": "cjs26-sh-otel", "start": "2026-04-17 12:05", "end": "2026-04-17 12:25"},
+        {"name": "Replacing form libraries with native web APIs — Trust Jamin Okpukoro", "short": "cjs26-sh-forms", "start": "2026-04-17 12:25", "end": "2026-04-17 12:45"},
+        {"name": "Look ma, no hands! Multimodal AI-Agents in the browser — Nico Martin", "short": "cjs26-sh-mm", "start": "2026-04-17 12:45", "end": "2026-04-17 13:05"},
+        {"name": "Lunch", "short": "cjs26-sh-lun", "start": "2026-04-17 13:05", "end": "2026-04-17 14:00"},
+        {"name": "How to choose the right AI model for your project — Ali Spivak", "short": "cjs26-sh-aim", "start": "2026-04-17 14:00", "end": "2026-04-17 14:25"},
+        {"name": "Building Resilient UIs with React — Faris Aziz", "short": "cjs26-sh-res", "start": "2026-04-17 14:25", "end": "2026-04-17 14:50"},
+        {"name": "A Decade and Counting: React's Rhapsody of Life — Matheus Albuquerque", "short": "cjs26-sh-dec", "start": "2026-04-17 14:50", "end": "2026-04-17 15:25"},
+        {"name": "Improve your e-commerce with Agents and Model Context Protocol. — Chris Noring", "short": "cjs26-sh-mcp", "start": "2026-04-17 15:25", "end": "2026-04-17 15:45"},
+        {"name": "JSBT: A Binary Serialization Format for Real JavaScript Object Graphs — Alexander Cheprasov", "short": "cjs26-sh-jsbt", "start": "2026-04-17 15:45", "end": "2026-04-17 16:10"},
+        {"name": "JS at the speed of Rust: Oxc — Jim Dummett", "short": "cjs26-sh-oxc", "start": "2026-04-17 16:10", "end": "2026-04-17 16:55"}
+      ]
+    },
+    {
+      "name": "Session Room 1 - Level -1",
+      "events": [
+        {"name": "Breakfast", "short": "cjs26-s1-bre", "start": "2026-04-17 08:30", "end": "2026-04-17 11:20"},
+        {"name": "Start of Track 3 — Mihchael Hoffman", "short": "cjs26-s1-t3s", "start": "2026-04-17 11:20", "end": "2026-04-17 11:25"},
+        {"name": "From Isolation to Acceleration: Building the fastest payment platform on an iFrame — Eduardo Aparicio Cardenes", "short": "cjs26-s1-pay", "start": "2026-04-17 11:25", "end": "2026-04-17 12:05"},
+        {"name": "WebAssembly + JavaScript: Partners, Not Competitors and why NOW is the right time to pay attention — Aprajita Verma", "short": "cjs26-s1-wasm", "start": "2026-04-17 12:05", "end": "2026-04-17 13:00"},
+        {"name": "Lunch", "short": "cjs26-s1-lun", "start": "2026-04-17 13:00", "end": "2026-04-17 14:00"},
+        {"name": "Pigeon-Driven Development — Scott Spence", "short": "cjs26-s1-pig", "start": "2026-04-17 14:00", "end": "2026-04-17 14:45"},
+        {"name": "Effortlessly defend your dev machine from North Koreans on NPM — Zbyszek Tenerowicz", "short": "cjs26-s1-npm", "start": "2026-04-17 14:45", "end": "2026-04-17 15:20"},
+        {"name": "Off-the-main-thread : Building fast, smooth and future-proof web apps. — Ananya Kittane Yogananda", "short": "cjs26-s1-omt", "start": "2026-04-17 15:20", "end": "2026-04-17 15:50"},
+        {"name": "Break", "short": "cjs26-s1-br", "start": "2026-04-17 15:50", "end": "2026-04-17 16:10"}
+      ]
+    },
+    {
+      "name": "Session Room 2 - Level -1",
+      "events": [
+        {"name": "Breakfast", "short": "cjs26-s2-bre", "start": "2026-04-17 08:30", "end": "2026-04-17 11:20"},
+        {"name": "Start of Track 4 — Praveen Kumar Purushothaman", "short": "cjs26-s2-t4s", "start": "2026-04-17 11:20", "end": "2026-04-17 11:25"},
+        {"name": "Securing AI-Generated Code with Semgrep — Paul Ibeabuchi", "short": "cjs26-s2-sem", "start": "2026-04-17 11:25", "end": "2026-04-17 12:05"},
+        {"name": "Embeddable Agentic SaaS with A2UI and Microfrontends — Benjamin Bartosch & Alexander Günsche", "short": "cjs26-s2-a2ui", "start": "2026-04-17 12:05", "end": "2026-04-17 13:00"},
+        {"name": "Lunch", "short": "cjs26-s2-lun", "start": "2026-04-17 13:00", "end": "2026-04-17 14:00"},
+        {"name": "From Executor to Orchestrator: Building in the Age of AI Agents — Nkechi Anyanwu", "short": "cjs26-s2-orch", "start": "2026-04-17 14:00", "end": "2026-04-17 15:20"},
+        {"name": "Six-Month Refactor in Six Days: Using AI to Update Deprecated JS Libraries — Mo Khazali", "short": "cjs26-s2-ref", "start": "2026-04-17 15:20", "end": "2026-04-17 16:10"}
+      ]
+    }
+  ]
+}

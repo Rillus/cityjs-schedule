@@ -6,6 +6,10 @@ import Acts from './Acts';
 import {BrowserRouter, MemoryRouter, Route, Routes} from 'react-router-dom';
 import {Data} from "../../../types/act";
 
+beforeEach(() => {
+  localStorage.setItem('hidePastActs', 'false');
+});
+
 const actsData: Data = {
   locations: [
     {
@@ -25,8 +29,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2025-06-26 13:00',
-          end: '2025-06-26 13:30',
+          start: '2026-04-17 13:00',
+          end: '2026-04-17 13:30',
         },
         {
           id: 1,
@@ -41,8 +45,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2025-06-26 12:00',
-          end: '2025-06-26 12:30',
+          start: '2026-04-17 12:00',
+          end: '2026-04-17 12:30',
         },
         {
           id: 2,
@@ -57,8 +61,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2025-06-26 12:30',
-          end: '2025-06-26 13:00',
+          start: '2026-04-17 12:30',
+          end: '2026-04-17 13:00',
         },
       ],
     },
@@ -79,8 +83,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2025-06-26 12:00',
-          end: '2025-06-26 12:30',
+          start: '2026-04-17 12:00',
+          end: '2026-04-17 12:30',
         },
       ],
     },
@@ -94,7 +98,7 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>, {}
     );
-    const actsElement = screen.queryAllByLabelText('Add to lineup');
+    const actsElement = screen.queryAllByLabelText('Add to schedule');
     expect(actsElement).not.toBeNull();
   });
 
@@ -104,8 +108,8 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>
     );
-    const searchBar = screen.queryAllByLabelText('Search');
-    expect(searchBar).not.toBeNull();
+    const searchBar = screen.getByLabelText('Search for a session');
+    expect(searchBar).toBeInTheDocument();
   });
 
   it('should show acts', () => {
@@ -124,7 +128,7 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>
     );
-    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for a session');
     fireEvent.change(searchBar, { target: { value: 'Yoga like water' } });
 
     expect(searchBar.value).toBe('Yoga like water');
@@ -140,7 +144,7 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>
     );
-    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for a session');
     fireEvent.change(searchBar, { target: { value: 'Yoga like fire' } });
 
     expect(searchBar.value).toBe('Yoga like fire');
@@ -154,7 +158,7 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>
     );
-    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for a session');
     fireEvent.change(searchBar, { target: { value: 'Yoga like water' } });
 
     expect(searchBar.value).toBe('Yoga like water');
@@ -170,7 +174,7 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>
     );
-    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for a session');
     fireEvent.change(searchBar, { target: { value: 'Y' } });
 
     expect(searchBar.value).toBe('Y');
@@ -207,33 +211,17 @@ describe('Acts component', () => {
     expect(acts[3]).toHaveTextContent('The Sky at Night');
   });
 
-  it('should show all day buttons including "all"', () => {
+  it('should hide the day selector when only one day is available', () => {
     render(
       <BrowserRouter>
         <Acts data={actsData} />
       </BrowserRouter>
     );
 
-    // Check that all day buttons are present
-    const allButton = screen.getByText('all');
-    const wedButton = screen.getByText('wed');
-    const thuButton = screen.getByText('thu');
-    const friButton = screen.getByText('fri');
-    const satButton = screen.getByText('sat');
-    const sunButton = screen.getByText('sun');
-    const monButton = screen.getByText('mon');
-
-    expect(allButton).toBeInTheDocument();
-    expect(wedButton).toBeInTheDocument();
-    expect(thuButton).toBeInTheDocument();
-    expect(friButton).toBeInTheDocument();
-    expect(satButton).toBeInTheDocument();
-    expect(sunButton).toBeInTheDocument();
-    expect(monButton).toBeInTheDocument();
-
-    // "All" should be active by default
-    expect(allButton).not.toHaveClass('isInactive');
-    expect(wedButton).toHaveClass('isInactive');
+    expect(screen.queryByText('Day 3')).not.toBeInTheDocument();
+    expect(screen.queryByText('All')).not.toBeInTheDocument();
+    expect(screen.queryByText('Day 1')).not.toBeInTheDocument();
+    expect(screen.queryByText('Day 2')).not.toBeInTheDocument();
   });
 
   it('should load more acts when the user scrolls to the bottom of the page', () => {
@@ -266,8 +254,8 @@ describe('Acts component', () => {
             twitter: '',
             soundcloud: '',
             website: '',
-            start: '2025-06-26 12:00',
-            end: '2025-06-26 12:30',
+            start: '2026-04-17 12:00',
+            end: '2026-04-17 12:30',
           },
         ];
       }
@@ -295,7 +283,7 @@ describe('Acts component', () => {
     expect(act29).toHaveLength(0);
 
     // expect only first page of acts to be in the document
-    const actsElement = screen.queryAllByLabelText('Add to lineup');
+    const actsElement = screen.queryAllByLabelText('Add to schedule');
     expect(actsElement).toHaveLength(20);
 
     act(() => {
@@ -306,7 +294,7 @@ describe('Acts component', () => {
     const act29Again = screen.queryAllByText('The Sky at Day 29');
     expect(act29Again).not.toBeNull();
 
-    const actsElementAgain = screen.queryAllByLabelText('Add to lineup');
+    const actsElementAgain = screen.queryAllByLabelText('Add to schedule');
     expect(actsElementAgain).toHaveLength(30);
   })
 });

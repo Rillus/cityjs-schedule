@@ -1,5 +1,5 @@
-const CACHE_NAME = 'glasto2025-v7';
-const FESTIVAL_DATA_CACHE = 'festival-data-v1';
+const CACHE_NAME = 'cityjs-london-v1';
+const SCHEDULE_DATA_CACHE = 'cityjs-schedule-v1';
 const STATIC_CACHE = 'static-resources-v1';
 const IMAGES_CACHE = 'images-v1';
 
@@ -11,88 +11,48 @@ const urlsToCache = [
   '/logo192.png',
   '/logo512.png',
   '/offline.html',
-  '/g2025.json' // Keep as fallback
+  '/cityjs-london.json'
 ];
 
-// Install event - cache essential resources
 self.addEventListener('install', event => {
   event.waitUntil(
     Promise.all([
       caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)),
-      caches.open(FESTIVAL_DATA_CACHE),
+      caches.open(SCHEDULE_DATA_CACHE),
       caches.open(STATIC_CACHE),
       caches.open(IMAGES_CACHE)
     ])
   );
 });
 
-// Fetch event with different strategies for different types of requests
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Only handle http and https requests
   if (!request.url.startsWith('http')) {
     return;
   }
 
-  // Festival data from API - Network first, then cache (for latest lineup updates)
-  if (url.hostname === 'glasto-lineup.vercel.app' && url.pathname === '/api/lineup-data') {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          // If we get a successful response, cache it and return
-          if (response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(FESTIVAL_DATA_CACHE).then(cache => {
-              cache.put(request, responseClone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // If network fails (offline), try to serve from cache
-          console.log('Network failed for API, serving from cache');
-          return caches.match(request)
-            .then(cachedResponse => {
-              if (cachedResponse) {
-                console.log('Serving API data from cache');
-                return cachedResponse;
-              }
-              // If no cached API data, this will trigger the app's fallback to /g2025.json
-              throw new Error('No cached API data available');
-            });
-        })
-    );
-    return;
-  }
-
-  // Legacy festival data (fallback) - Cache first, then network
-  if (url.pathname === '/g2025.json') {
+  if (url.pathname === '/cityjs-london.json') {
     event.respondWith(
       caches.match(request)
         .then(cachedResponse => {
-          // Return cached version immediately if available
           if (cachedResponse) {
-            // Update cache in background if online
             fetch(request).then(response => {
               if (response.status === 200) {
                 const responseClone = response.clone();
-                caches.open(FESTIVAL_DATA_CACHE).then(cache => {
+                caches.open(SCHEDULE_DATA_CACHE).then(cache => {
                   cache.put(request, responseClone);
                 });
               }
-            }).catch(() => {
-              // Silently fail if offline - we already have cached data
-            });
+            }).catch(() => {});
             return cachedResponse;
           }
-          
-          // If no cache, try network
+
           return fetch(request).then(response => {
             if (response.status === 200) {
               const responseClone = response.clone();
-              caches.open(FESTIVAL_DATA_CACHE).then(cache => {
+              caches.open(SCHEDULE_DATA_CACHE).then(cache => {
                 cache.put(request, responseClone);
               });
             }
@@ -103,7 +63,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Images - Cache first, then network
   if (request.destination === 'image') {
     event.respondWith(
       caches.match(request)
@@ -125,7 +84,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Static resources (CSS, JS) - Stale while revalidate
   if (request.destination === 'style' || request.destination === 'script') {
     event.respondWith(
       caches.match(request)
@@ -145,36 +103,29 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Navigation requests - For SPAs, all routes should serve the main index.html
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then(response => {
-          // For SPAs, we want to cache the main index.html for all navigation requests
           if (response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then(cache => {
-              // Cache the response for this specific URL
               cache.put(request, responseClone);
             });
           }
           return response;
         })
         .catch(() => {
-          // If network fails, try to serve from cache
           return caches.match(request)
             .then(cachedResponse => {
               if (cachedResponse) {
                 return cachedResponse;
               }
-              // If no cached version of this specific route, serve the main index.html
-              // This allows React Router to handle the routing on the client side
               return caches.match('/')
                 .then(indexResponse => {
                   if (indexResponse) {
                     return indexResponse;
                   }
-                  // Only show offline page as absolute last resort
                   return caches.match('/offline.html');
                 });
             });
@@ -183,7 +134,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Default - Cache first, then network
   event.respondWith(
     caches.match(request)
       .then(response => {
@@ -195,13 +145,12 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Activate event - clean up old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (![CACHE_NAME, FESTIVAL_DATA_CACHE, STATIC_CACHE, IMAGES_CACHE].includes(cacheName)) {
+          if (![CACHE_NAME, SCHEDULE_DATA_CACHE, STATIC_CACHE, IMAGES_CACHE].includes(cacheName)) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
@@ -209,4 +158,4 @@ self.addEventListener('activate', event => {
       );
     })
   );
-}); 
+});

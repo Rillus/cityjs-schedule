@@ -8,8 +8,8 @@
     border-radius: 5px;
     border: 1px solid var(--currentContrast);
     display: inline-block;
-    width: 47px;
-    min-width: 0;
+    width: auto;
+    min-width: 47px;
     line-height: 30px;
     text-align: center;
     margin: $spacer/2 0;
@@ -43,6 +43,18 @@
     &--mon {
       background-color: var(--mon);
       color: var(--white);
+    }
+    &--day1 {
+      background-color: var(--day1);
+      color: var(--white);
+    }
+    &--day2 {
+      background-color: var(--day2);
+      color: var(--black);
+    }
+    &--day3 {
+      background-color: var(--day3);
+      color: var(--black);
     }
 
     &.isInactive {

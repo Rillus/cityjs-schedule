@@ -26,7 +26,6 @@ describe("Act", () => {
         <Act data={data} />
       </BrowserRouter>
     );
-    const stagesHeader = screen.getByText(/Act/i);
-    expect(stagesHeader).toBeInTheDocument();
+    expect(screen.getByText(/Session not found/i)).toBeInTheDocument();
   });
 });

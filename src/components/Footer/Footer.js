@@ -8,14 +8,14 @@ const Footer = ({ data }) => {
         <div className="Footer-left">
           v2.6 {' '}
           <a
-            href="https://github.com/Rillus/glasto/"
+            href="https://london.cityjsconf.org/schedule"
             target="_blank"
             rel="noopener noreferrer">
-            About this app
+            Official CityJS schedule
           </a>
         </div>
         <div className="Footer-right">
-          {data?.modified && `Lineup updated: ${data.modified}`}
+          {data?.modified && `Data: ${data.modified}`}
         </div>
       </div>
     </footer>

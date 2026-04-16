@@ -5,7 +5,17 @@
 
 .header {
   font-size: 18px;
-  display: inline-block;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.info {
+  max-width: 40rem;
+  line-height: 1.5;
+
+  a {
+    color: var(--primary, #07d9ff);
+  }
 }
 
 .map {

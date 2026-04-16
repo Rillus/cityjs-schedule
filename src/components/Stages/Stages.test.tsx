@@ -26,7 +26,7 @@ describe("Stages", () => {
         <Stages data={data} />
       </BrowserRouter>
     );
-    const stagesHeader = screen.getByText(/Stages/i);
+    const stagesHeader = screen.getByText(/Tracks & rooms/i);
     expect(stagesHeader).toBeInTheDocument();
   });
 

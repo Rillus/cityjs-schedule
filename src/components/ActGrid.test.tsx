@@ -29,7 +29,7 @@ describe("ActGrid", () => {
       </BrowserRouter>
     );
 
-    const actChips = screen.getAllByLabelText("Add to lineup");
+    const actChips = screen.getAllByLabelText("Add to schedule");
     expect(actChips).toHaveLength(actData.length);
 
     expect(screen.queryAllByRole("link", { name: /stage 1/i })).toHaveLength(0);

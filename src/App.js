@@ -29,14 +29,14 @@ function App() {
     {
       path: '/',
       element: <Intro data={data} />,
-      name: 'My Lineup',
+      name: 'My schedule',
       inNav: true,
       isActive: true
     },
     {
       path: '/stages',
       element: <Stages data={data} />,
-      name: 'Stages',
+      name: 'Tracks',
       inNav: true,
       isActive: false
     },
@@ -50,7 +50,7 @@ function App() {
     {
       path: '/acts',
       element: <Acts data={data} />,
-      name: 'Acts',
+      name: 'Sessions',
       inNav: true,
       isActive: false
     },
@@ -64,7 +64,7 @@ function App() {
     {
       path: '/map',
       element: <Maps />,
-      name: 'Maps',
+      name: 'Venue',
       inNav: true,
       isActive: false
     },
@@ -78,26 +78,29 @@ function App() {
   ];
 
 
-  // fetch data
+  const day3DatePrefix = '2026-04-17';
+
+  function getDay3OnlyData(scheduleData) {
+    const day3Locations = scheduleData.locations
+      .map((location) => ({
+        ...location,
+        events: location.events.filter((event) => event.start.startsWith(day3DatePrefix))
+      }))
+      .filter((location) => location.events.length > 0);
+
+    return {
+      ...scheduleData,
+      locations: day3Locations
+    };
+  }
+
+  // fetch data — CityJS London timetable (Day 3 only)
   useEffect(() => {
-    fetch('https://glasto-lineup.vercel.app/api/lineup-data')
+    fetch('/cityjs-london.json')
       .then(response => response.json())
-      .then(apiResponse => {
-        console.log('data got!', apiResponse.data);
-        setData(apiResponse.data); // Access nested data property
-      })
+      .then(scheduleData => setData(getDay3OnlyData(scheduleData)))
       .catch(error => {
-        console.error('Failed to fetch lineup data:', error);
-        // Fallback to local data if API fails
-        fetch('/g2025.json')
-          .then(response => response.json())
-          .then(fallbackData => {
-            console.log('Using fallback data');
-            setData(fallbackData);
-          })
-          .catch(fallbackError => {
-            console.error('Fallback data also failed:', fallbackError);
-          });
+        console.error('Failed to load CityJS schedule:', error);
       });
   }, []);
 
@@ -107,7 +110,7 @@ function App() {
       <header className="App-header Header">
         <h3 className="Header-logo">
           <Link to={'/'}>
-            <img src="/logo192-darkmode.png" alt={`Glasto ${year}`}/>
+            <img src="/cityjs.svg" alt={`CityJS London ${year}`}/>
           </Link>
         </h3>
         <Nav routes={routeArray} />

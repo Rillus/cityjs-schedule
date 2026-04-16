@@ -38,7 +38,7 @@ function Act(props: { data: Data }) {
 
   if (!act) {
     return <div>
-      <h1 className="u-text-center">Act not found</h1>
+      <h1 className="u-text-center">Session not found</h1>
     </div>
   }
 

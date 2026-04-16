@@ -43,7 +43,7 @@ function Stage(props: {data: Data}) {
 
   if (!stage) {
     return <div>
-      <h1 className="u-text-center">Stage not found</h1>
+      <h1 className="u-text-center">Track not found</h1>
     </div>
   }
 

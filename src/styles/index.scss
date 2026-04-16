@@ -22,7 +22,9 @@ body {
 }
 
 body {
-    background: url('../../public/images/pyramid-sunset-blur-dark.jpg') no-repeat center center fixed var(--background);
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('../../public/images/tower-bridge.avif') no-repeat center center fixed var(--background);
     background-size: cover;
     color: var(--backgroundContrast);
     margin: 0;

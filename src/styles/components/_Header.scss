@@ -4,7 +4,10 @@
   margin-bottom: 0;
   line-height: 39px;
   padding: 0 0 0 5px;
-  background: $light-header-gradient, url('../../../public/images/pyramid-sunset-blur-dark.jpg') no-repeat top center fixed var(--background);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    $light-header-gradient,
+    url('../../../public/images/tower-bridge.avif') no-repeat top center fixed var(--background);
   background-size: cover;
   display: flex;
   height: 60px;
@@ -14,7 +17,7 @@
   }
 
   h3 {
-    margin: 0 0 0 2px;
+    margin: 5px 0 0 2px;
     font-size: 24px;
     line-height: 59px;
     padding-left: $spacer;
@@ -31,12 +34,14 @@
   }
 
   &-logo {
-    width: 60px;
-    height: 60px;
+    width: auto;
+    height: 40px;
 
     img {
-        width: 100%;
+        width: auto;
         height: 100%;
+        padding: 6px;
+        filter: brightness(0) invert(1);
     }
 
     @media (max-width: 400px) {

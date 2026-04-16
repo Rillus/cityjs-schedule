@@ -35,7 +35,7 @@ export default function ActChip(props: { name: string, short: string, isSelected
       {user && (
         <button
           className={`ActChip-button ${isSelected ? 'isSelected' : ''}`}
-          aria-label={isSelected ? 'Remove from lineup' : 'Add to lineup'}
+          aria-label={isSelected ? 'Remove from schedule' : 'Add to schedule'}
           onClick={addToLineup}>
           {selectedIcon}
         </button>

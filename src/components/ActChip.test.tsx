@@ -33,11 +33,11 @@ describe('ActChip', () => {
         />
       </BrowserRouter>
     );
-    fireEvent.click(screen.getByLabelText('Add to lineup'));
-    expect(screen.getByLabelText('Remove from lineup')).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText('Add to schedule'));
+    expect(screen.getByLabelText('Remove from schedule')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByLabelText('Remove from lineup'));
-    expect(screen.getByLabelText('Add to lineup')).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText('Remove from schedule'));
+    expect(screen.getByLabelText('Add to schedule')).toBeInTheDocument();
   });
 
   it('adds the selected act to localStorage', () => {
@@ -45,17 +45,18 @@ describe('ActChip', () => {
       <BrowserRouter>
         <ActChip
           short={'TST'}
-          isSelected={true}
+          isSelected={false}
           name={'Test'}
         />
       </BrowserRouter>
     );
 
-    fireEvent.click(screen.getByLabelText('Add to lineup'));
+    fireEvent.click(screen.getByLabelText('Add to schedule'));
     expect(localStorage.getItem('act_TST')).toEqual('true');
   });
 
   it('removes the selected act from localStorage', () => {
+    localStorage.setItem('act_TST', 'true');
     render(
       <BrowserRouter>
         <ActChip
@@ -66,7 +67,7 @@ describe('ActChip', () => {
       </BrowserRouter>
     );
 
-    fireEvent.click(screen.getByLabelText('Remove from lineup'));
+    fireEvent.click(screen.getByLabelText('Remove from schedule'));
     expect(localStorage.getItem('act_TST')).toEqual('false');
   });
 
@@ -81,6 +82,6 @@ describe('ActChip', () => {
         />
       </BrowserRouter>
     );
-    expect(screen.getByLabelText('Remove from lineup')).toBeInTheDocument();
+    expect(screen.getByLabelText('Remove from schedule')).toBeInTheDocument();
   });
 });

@@ -6,7 +6,7 @@ const HidePastActsToggle = ({ hidePastActs, onToggle }) => {
     <button 
       className={`HidePastActsToggle ${hidePastActs ? 'HidePastActsToggle--active' : ''}`}
       onClick={onToggle}
-      title={hidePastActs ? 'Currently hiding past acts. Click to show all acts.' : 'Currently showing all acts. Click to hide past acts.'}
+      title={hidePastActs ? 'Currently hiding past sessions. Click to show all.' : 'Currently showing all sessions. Click to hide past ones.'}
     >
       <span className="HidePastActsToggle-icon">
         {hidePastActs ? '🙈' : '👁️'}

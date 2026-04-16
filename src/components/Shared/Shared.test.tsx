@@ -30,8 +30,8 @@ describe("Shared", () => {
         <Shared data={data} />
       </BrowserRouter>
     );
-    expect(screen.getByText(/No saved acts yet/i)).toBeInTheDocument();
-    expect(screen.getByText(/Shared lineup/i)).toBeInTheDocument();
+    expect(screen.getByText(/No sessions in this link/i)).toBeInTheDocument();
+    expect(screen.getByText(/Shared schedule/i)).toBeInTheDocument();
   });
 
   it.skip('should show saved acts based on url', () => {

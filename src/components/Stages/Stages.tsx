@@ -9,8 +9,6 @@ function Stages({data}: {data: Data}) {
   const [search, setSearch] = useState('');
   const [stages, setStages]: [Location[], any] = useState([]);
 
-  const [errorMessage, setErrorMessage] = useState('');
-
   function getStages() {
     return data.locations.map((location, index) => {
       return {
@@ -21,13 +19,17 @@ function Stages({data}: {data: Data}) {
   }
 
   useEffect(() => {
-    setStages(getStages());
-    console.log('stages', stages);
+    setStages(
+      data.locations.map((location, index) => ({
+        id: index + 1,
+        name: location.name,
+      }))
+    );
   }, [data]);
 
   return <div className="Stages">
       <h1 className="Stages-heading u-text-center">
-        Stages
+        Tracks &amp; rooms
       </h1>
 
       <div className={"Search"}>
@@ -35,16 +37,14 @@ function Stages({data}: {data: Data}) {
           className={"Input"}
           type={"text"}
           data-testid={"Search"}
-          aria-label={"Search for a stage"}
-          placeholder={"Search for a stage"}
+          aria-label={"Search for a track or room"}
+          placeholder={"Search for a track or room"}
           value={search}
           onChange={(e) => {
             setSearch(e.target.value)
             if (e.target.value.length === 0) {
-              console.log('empty')
               setStages(getStages());
             } else {
-              console.log('not empty')
               setStages(getStages().filter((stage: Location) => stage.name.toLowerCase().includes(e.target.value.toLowerCase())));
             }
           }}

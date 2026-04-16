@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect, useMemo, useState, useRef} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import ActGrid from "../ActGrid";
 import {Loader} from "../Loader";
 import styles from "./Acts.module.scss";
@@ -14,18 +14,10 @@ interface ActsProps {
   data: Data;
 }
 
-interface DayTimes {
-  [key: string]: {
-    start: Date;
-    end: Date;
-  };
-}
-
 const Acts: React.FC<ActsProps> = ({data}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [acts, setActs] = useState<EventType[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [selectedDay, setSelectedDay] = useState<string>(useParams().day ?? 'all');
   const [search, setSearch] = useState<string>(useParams().search ?? '');
   const [errorMessage, setErrorMessage] = useState<string>('')
   const mainElement = useRef<HTMLElement>(null);
@@ -42,45 +34,12 @@ const Acts: React.FC<ActsProps> = ({data}) => {
 
   const take = 20;
 
-  const dayTimes: DayTimes = useMemo(() => {
-    return {
-      all: {
-        start: new Date('2025-06-25T00:00:00.000Z'),
-        end: new Date('2025-06-31T12:00:00.000Z')
-      },
-      wed: {
-        start: new Date('2025-06-25T00:00:00.000Z'),
-        end: new Date('2025-06-26T05:00:00.000Z')
-      },
-      thu: {
-        start: new Date('2025-06-26T00:00:00.000Z'),
-        end: new Date('2025-06-27T05:00:00.000Z')
-      },
-      fri: {
-        start: new Date('2025-06-27T00:00:00.000Z'),
-        end: new Date('2025-06-28T05:00:00.000Z')
-      },
-      sat: {
-        start: new Date('2025-06-28T00:00:00.000Z'),
-        end: new Date('2025-06-29T05:00:00.000Z')
-      },
-      sun: {
-        start: new Date('2025-06-29T00:00:00.000Z'),
-        end: new Date('2025-06-30T05:00:00.000Z')
-      },
-      mon: {
-        start: new Date('2025-06-30T00:00:00.000Z'),
-        end: new Date('2025-06-31T12:00:00.000Z')
-      }
-    }
-  }, []);
-
-  // This useEffect hook is used to update the page, search and selectedDay in the URL
+  // This useEffect hook is used to update the page and search in the URL
   useEffect(() => {
-    window.history.pushState({}, '', `?page=${page}&search=${search}&selectedDay=${selectedDay}`);
-  }, [setPage, page, selectedDay, search, setSearch]);
+    window.history.pushState({}, '', `?page=${page}&search=${search}`);
+  }, [setPage, page, search, setSearch]);
 
-  // This useEffect hook is used to filter the acts based on the search, selectedDay and page
+  // This useEffect hook is used to filter the acts based on the search and page
   useEffect(() => {
     const dataActs: EventType[] = data.locations
       .map((location, locationIndex) => {
@@ -104,25 +63,6 @@ const Acts: React.FC<ActsProps> = ({data}) => {
           return act.name.toLowerCase().includes(search.toLowerCase());
         }
         return true;
-      })
-      .filter((act: EventType) => {
-        const actStart = new Date(act.start);
-        let returnAct = false;
-
-        // ensure day is selected
-        if (selectedDay.split(',').length === 0 || selectedDay === '') {
-          return false;
-        }
-
-        // for each selected day, check if the act is within the day
-        selectedDay.split(',').forEach((day) => {
-          const {start, end} = dayTimes[day];
-          if (actStart >= start && actStart <= end) {
-            returnAct = true;
-          }
-        });
-
-        return returnAct;
       })
       .sort((a, b) => {
         const aStart = new Date(a.start).getTime();
@@ -154,7 +94,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     if (allActs.length === 0) {
       setErrorMessage('No results found');
     }
-  }, [data, selectedDay, search, page, dayTimes, totalPages, hidePastActs]);
+  }, [data, search, page, totalPages, hidePastActs]);
 
   // lazy load next page when scrolled to the bottom
   useEffect(() => {
@@ -177,72 +117,14 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [page, mainElement, totalPages]);
 
-  function toggleDay(day: string) {
-    // selectedDay can be a comma separated list of days
-    let newSelectedDay = selectedDay;
-    let currentlySelectedDays = selectedDay.split(',');
-
-    // if the day is already selected, remove it
-    if (currentlySelectedDays.includes(day)) {
-      if (currentlySelectedDays.length > 1) {
-        newSelectedDay = currentlySelectedDays.filter((d) => d !== day).join(',');
-      }
-    } else {
-      // if the day is not selected, add it. Only one day can be selected
-      if (currentlySelectedDays.length === 1) {
-        newSelectedDay = day;
-      } else {
-        newSelectedDay = currentlySelectedDays.filter((d) => d !== 'all').join(',');
-        newSelectedDay = newSelectedDay + ',' + day;
-      }
-    }
-
-    setSelectedDay(newSelectedDay);
-    setPage(1);
-    window.history.pushState({}, '', `?page=${page}&search=${search}&selectedDay=${selectedDay}`);
-  }
-
-  function DaySelector() : ReactElement {
-    const days = ['all', 'wed', 'thu', 'fri', 'sat', 'sun', 'mon'];
-
-    let dayClass = (day: string) => {
-      let daySelectorClass = 'Button DateChip-day DateChip-day--';
-      daySelectorClass += day;
-
-      // only allow one day to be selected
-      // if (selectedDay.split(',').length > 1) {
-      //   daySelectorClass += ' isInactive';
-      // }
-
-      if (!selectedDay.split(',').includes(day)) {
-        daySelectorClass += ' isInactive';
-      }
-
-      return daySelectorClass;
-    }
-
-    return (
-      <div className={"ButtonGroup"}>
-        {days.map((day) => (
-          <button
-            className={dayClass(day)}
-            key={day}
-            onClick={() => toggleDay(day)}>
-            {day}
-          </button>
-        ))}
-      </div>
-    )
-  }
-
   return <main ref={mainElement}>
     <div className={"Search"}>
       <input
         className={"Input"}
         type={"text"}
         id={"actSearch"}
-        aria-label={"Search for an act"}
-        placeholder={"Search for an act"}
+        aria-label={"Search for a session"}
+        placeholder={"Search for a session"}
         value={search}
         onChange={(e) => {
           setSearch(e.target.value)
@@ -261,13 +143,10 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         }}
       />
 
-      <DaySelector />
-
       <button
         className={`Button ${styles.Acts_clearButton}`}
         onClick={() => {
           setSearch('');
-          setSelectedDay('all');
         }}
       >
         &times;

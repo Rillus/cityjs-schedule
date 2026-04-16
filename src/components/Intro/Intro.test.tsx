@@ -93,7 +93,7 @@ describe("Intro", () => {
         <Intro data={introData} />
       </BrowserRouter>
     );
-    const button = screen.getByText('Share your lineup');
+    const button = screen.getByText('Share your schedule');
     expect(button).toBeInTheDocument();
 
     // mock the clipboard API
@@ -122,7 +122,7 @@ describe("Intro", () => {
       </BrowserRouter>
     );
     
-    expect(screen.getByText(/No saved acts yet/)).toBeInTheDocument();
+    expect(screen.getByText(/No saved sessions yet/)).toBeInTheDocument();
   });
 
   it('should show hide past acts toggle', () => {
@@ -132,6 +132,6 @@ describe("Intro", () => {
       </BrowserRouter>
     );
     
-    expect(screen.getByTitle(/Currently showing all acts|Currently hiding past acts/)).toBeInTheDocument();
+    expect(screen.getByTitle(/Currently showing all sessions|Currently hiding past sessions/)).toBeInTheDocument();
   });
 });
