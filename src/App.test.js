@@ -9,7 +9,7 @@ const mockScheduleResponse = {
   name: 'CityJS London',
   locations: [
     {
-      name: 'Tessl AI HQ',
+      name: 'Kensington Town Hall — Day 1',
       events: [
         {
           name: 'Test session',
@@ -89,6 +89,6 @@ test('filters out Day 1 and Day 2 sessions', async () => {
   );
 
   await waitFor(() => {
-    expect(screen.queryByText('Tessl AI HQ')).not.toBeInTheDocument();
+    expect(screen.queryByText('Kensington Town Hall — Day 1')).not.toBeInTheDocument();
   });
 });

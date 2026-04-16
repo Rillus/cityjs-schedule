@@ -1,6 +1,11 @@
 const schedule = require('../../public/cityjs-london.json');
 
 describe('cityjs-london.json', () => {
+  it('lists opening days at Kensington Town Hall', () => {
+    expect(schedule.locations[0].name).toMatch(/Kensington Town Hall/);
+    expect(schedule.locations[1].name).toMatch(/Kensington Town Hall/);
+  });
+
   it('lists the four Day 3 tracks from the official programme', () => {
     const names = schedule.locations.map((l) => l.name);
     expect(names).toEqual(

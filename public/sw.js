@@ -1,5 +1,5 @@
-const CACHE_NAME = 'cityjs-london-v1';
-const SCHEDULE_DATA_CACHE = 'cityjs-schedule-v1';
+const CACHE_NAME = 'cityjs-london-v2';
+const SCHEDULE_DATA_CACHE = 'cityjs-schedule-v2';
 const STATIC_CACHE = 'static-resources-v1';
 const IMAGES_CACHE = 'images-v1';
 

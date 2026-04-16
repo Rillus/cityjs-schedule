@@ -6,7 +6,7 @@
   "timezone": "Europe/London",
   "locations": [
     {
-      "name": "Tessl AI HQ",
+      "name": "Kensington Town Hall — Day 1",
       "events": [
         {"name": "Registration & coffee", "short": "cjs26-d1-reg", "start": "2026-04-15 08:30", "end": "2026-04-15 09:30"},
         {"name": "Welcome & housekeeping", "short": "cjs26-d1-wel", "start": "2026-04-15 09:30", "end": "2026-04-15 10:00"},
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "name": "Workshops",
+      "name": "Kensington Town Hall — Workshops (Day 2)",
       "events": [
         {"name": "Workshop registration", "short": "cjs26-d2-reg", "start": "2026-04-16 09:00", "end": "2026-04-16 09:30"},
         {"name": "Deep dive: React Server Components", "short": "cjs26-d2-rsc", "start": "2026-04-16 09:30", "end": "2026-04-16 11:00"},
