@@ -63,4 +63,36 @@ describe("Act", () => {
       screen.getAllByTestId("StageChip").some((el) => el.textContent === sessionTitle)
     ).toBe(true);
   });
+
+  it("shows enriched session copy when the timetable entry includes it", () => {
+    const sessionTitle = "The New UX — Tejas Kumar";
+    const pathParam = Url.decodePathSlug(Url.safeName(sessionTitle));
+    const cityjsLike: Data = {
+      locations: [
+        {
+          id: 1,
+          name: "Great Hall - Ground Floor",
+          events: [
+            {
+              name: sessionTitle,
+              short: "cjs26-gh-ux",
+              start: "2026-04-17 09:30",
+              end: "2026-04-17 10:00",
+              description: "Session abstract from the official site.",
+            },
+          ],
+        },
+      ],
+    };
+
+    render(
+      <MemoryRouter initialEntries={[`/acts/${pathParam}`]}>
+        <Routes>
+          <Route path="/acts/:name" element={<Act data={cityjsLike} />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText("Session abstract from the official site.")).toBeInTheDocument();
+  });
 });

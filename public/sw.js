@@ -1,8 +1,10 @@
-const CACHE_NAME = 'cityjs-london-v2';
-const SCHEDULE_DATA_CACHE = 'cityjs-schedule-v2';
+const CACHE_NAME = 'cityjs-london-v3';
+const SCHEDULE_DATA_CACHE = 'cityjs-schedule-v3';
 const STATIC_CACHE = 'static-resources-v1';
 const IMAGES_CACHE = 'images-v1';
 
+// Do not precache /cityjs-london.json here — it changes when the schedule is updated.
+// Rely on runtime caching (network-first below) so session blurbs are never stuck on an old copy.
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
@@ -10,8 +12,7 @@ const urlsToCache = [
   '/manifest.json',
   '/logo192.png',
   '/logo512.png',
-  '/offline.html',
-  '/cityjs-london.json'
+  '/offline.html'
 ];
 
 self.addEventListener('install', event => {
@@ -34,31 +35,20 @@ self.addEventListener('fetch', event => {
   }
 
   if (url.pathname === '/cityjs-london.json') {
+    // Network-first: the timetable (and embedded talk blurbs) must stay fresh online.
+    // Stale-first left users on an old JSON forever because React never re-fetched after SW update.
     event.respondWith(
-      caches.match(request)
-        .then(cachedResponse => {
-          if (cachedResponse) {
-            fetch(request).then(response => {
-              if (response.status === 200) {
-                const responseClone = response.clone();
-                caches.open(SCHEDULE_DATA_CACHE).then(cache => {
-                  cache.put(request, responseClone);
-                });
-              }
-            }).catch(() => {});
-            return cachedResponse;
+      fetch(request)
+        .then((response) => {
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(SCHEDULE_DATA_CACHE).then((cache) => {
+              cache.put(request, responseClone);
+            });
           }
-
-          return fetch(request).then(response => {
-            if (response.status === 200) {
-              const responseClone = response.clone();
-              caches.open(SCHEDULE_DATA_CACHE).then(cache => {
-                cache.put(request, responseClone);
-              });
-            }
-            return response;
-          });
+          return response;
         })
+        .catch(() => caches.match(request))
     );
     return;
   }

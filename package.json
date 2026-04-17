@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage .",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && bash scripts/deploy.sh"
+    "deploy": "npm run build && bash scripts/deploy.sh",
+    "refresh-cityjs-details": "node scripts/fetch-cityjs-talk-details.mjs"
   },
   "eslintConfig": {
     "extends": [

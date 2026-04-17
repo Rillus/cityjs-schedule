@@ -1,0 +1,65 @@
+@import "../../styles/variables.scss";
+
+.SessionDetail {
+  max-width: 40rem;
+  margin: 0 auto $spacer * 2;
+  padding: $spacer;
+  border-radius: 8px;
+  border: 1px solid var(--currentContrast);
+  background: rgba(0, 0, 0, 0.25);
+
+  &_image {
+    display: block;
+    width: 10rem;
+    height: 10rem;
+    margin: 0 auto $spacer;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--currentContrast);
+  }
+
+  &_block {
+    margin-bottom: $spacer * 1.5;
+  }
+
+  &_heading {
+    font-size: 1.1rem;
+    margin: 0 0 $spacer/2;
+    color: var(--primary);
+  }
+
+  &_prose {
+    line-height: 1.5;
+  }
+
+  &_paragraph {
+    margin: 0 0 $spacer/2;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_socials {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $spacer;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacer;
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+  }
+
+  &_official {
+    margin: 0;
+    font-size: 0.9rem;
+
+    a {
+      color: var(--primary);
+    }
+  }
+}

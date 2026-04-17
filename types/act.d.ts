@@ -10,6 +10,9 @@ interface ActType {
   name: string;
   url?: string;
   description?: string;
+  speakerBio?: string;
+  company?: string;
+  bluesky?: string;
   short: string;
   image?: string;
   spotify?: string;
