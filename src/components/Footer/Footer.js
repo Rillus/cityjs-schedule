@@ -2,6 +2,8 @@ import React from 'react';
 import './Footer.scss';
 
 const Footer = ({ data }) => {
+  const modifiedLabel = data?.modified?.replace(' (Day 3 tracks from cityjsconf.org)', '');
+
   return (
     <footer className="Footer">
       <div className="Footer-content">
@@ -15,7 +17,15 @@ const Footer = ({ data }) => {
           </a>
         </div>
         <div className="Footer-right">
-          {data?.modified && `Data: ${data.modified}`}
+          {modifiedLabel && (
+            <>
+              {`Data: ${modifiedLabel}`}
+              {' · '}
+            </>
+          )}
+          <a href="https://ticketlab.app" target="_blank" rel="noopener noreferrer">
+            App by ticketlab.app
+          </a>
         </div>
       </div>
     </footer>
