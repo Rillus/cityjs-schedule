@@ -29,7 +29,7 @@ function App() {
     {
       path: '/',
       element: <Intro data={data} />,
-      name: 'My schedule',
+      name: 'My CityJS',
       inNav: true,
       isActive: true
     },
