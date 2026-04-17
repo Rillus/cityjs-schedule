@@ -38,13 +38,27 @@
     height: 40px;
 
     img {
-        width: auto;
-        height: 100%;
-        padding: 6px;
-        filter: brightness(0) invert(1);
+      width: auto;
+      height: 100%;
+      padding: 6px;
+      filter: brightness(0) invert(1);
     }
 
-    @media (max-width: 400px) {
+    .Header-logoRoundel {
+      display: none;
+    }
+
+    @media (max-width: 545px) and (min-width: 445px) {
+      .Header-logoFull {
+        display: none;
+      }
+
+      .Header-logoRoundel {
+        display: inline-block;
+      }
+    }
+
+    @media (max-width: 444px) {
       display: none;
     }
   }

@@ -110,7 +110,8 @@ function App() {
       <header className="App-header Header">
         <h3 className="Header-logo">
           <Link to={'/'}>
-            <img src="/cityjs.svg" alt={`CityJS London ${year}`}/>
+            <img className="Header-logoFull" src="/cityjs.svg" alt={`CityJS London ${year}`}/>
+            <img className="Header-logoRoundel" src="/cityjs-roundel.svg" alt={`CityJS London ${year} roundel`}/>
           </Link>
         </h3>
         <Nav routes={routeArray} />

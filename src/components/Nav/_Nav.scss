@@ -7,9 +7,11 @@
   position: absolute;
   right: 0;
 
-  @media(max-width: 400px) {
+  @media (max-width: 444px) {
     margin: auto;
     position: static;
+    width: 100%;
+    justify-content: space-evenly;
   }
 
   &-item {
@@ -37,7 +39,7 @@
     }
 
     &:last-child {
-      @media(max-width: 400px) {
+      @media (max-width: 444px) {
         margin-right: 0;
       }
     }
