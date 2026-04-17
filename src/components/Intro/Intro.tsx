@@ -39,8 +39,10 @@ function Intro(props: {data: Data}) {
   const filteredActData = filterPastActs(savedActData, hidePastActs);
 
   const shareLineup = () => {
-      // create a string in format act_act1-act2_act3 for cookied acts
-      const lineup = savedActData.map(act => `act_${act.short}`).join('-');
+      // Use a comma separator so hyphenated ids remain intact.
+      const lineup = savedActData
+        .map((act) => encodeURIComponent(`act_${act.short}`))
+        .join(',');
       // update url with lineup
       const url = window.location.href.split('/').slice(0, -1).join('/') + '/shared/' + lineup;
 

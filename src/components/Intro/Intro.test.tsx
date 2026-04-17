@@ -52,6 +52,22 @@ const introData: Data = {
           start: futureDateString,
           end: futureDateString,
         },
+        {
+          id: 2,
+          name: "Hyphenated Act",
+          short: "cjs26-d1-reg",
+          description: "Test description",
+          image: "",
+          spotify: "",
+          youtube: "",
+          instagram: "",
+          facebook: "",
+          twitter: "",
+          soundcloud: "",
+          website: "",
+          start: futureDateString,
+          end: futureDateString,
+        },
       ],
     },
   ],
@@ -108,6 +124,31 @@ describe("Intro", () => {
 
     expect(writeText).toHaveBeenCalledWith(expect.stringContaining('act_testact'));
     expect(window.alert).toHaveBeenCalledWith('Link copied to clipboard');
+  });
+
+  it('should separate saved act ids with commas in shared lineup url', () => {
+    localStorageMock.getItem.mockImplementation((key) => {
+      if (key === 'act_testact' || key === 'act_cjs26-d1-reg') return 'true';
+      if (key === 'hidePastActs') return 'false';
+      return null;
+    });
+
+    render(
+      <BrowserRouter>
+        <Intro data={introData} />
+      </BrowserRouter>
+    );
+
+    const writeText = jest.fn();
+    Object.assign(navigator, {
+      clipboard: {
+        writeText,
+      },
+    });
+
+    fireEvent.click(screen.getByText('Share your schedule'));
+
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('/shared/act_testact,act_cjs26-d1-reg'));
   });
 
   it('should show appropriate message when no acts are saved', () => {
