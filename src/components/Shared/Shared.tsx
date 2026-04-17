@@ -2,22 +2,44 @@ import ActGrid from "../ActGrid";
 import {Data, EventType, Location} from "../../../types/act";
 import {useParams} from "react-router-dom";
 
+function getLineupEntries(lineupFromUrl: string): Set<string> {
+  if (!lineupFromUrl) {
+    return new Set();
+  }
+
+  const commaSeparatedEntries = lineupFromUrl
+    .split(',')
+    .filter(Boolean)
+    .map((entry) => decodeURIComponent(entry));
+
+  if (lineupFromUrl.includes(',')) {
+    return new Set(commaSeparatedEntries);
+  }
+
+  // Legacy links used "-" as a separator for non-hyphenated act ids.
+  const legacyEntries = lineupFromUrl.match(/act_[^-]+/g);
+  if (legacyEntries && legacyEntries.length > 1) {
+    return new Set(legacyEntries.map((entry) => decodeURIComponent(entry)));
+  }
+
+  return new Set(commaSeparatedEntries);
+}
+
 function Shared(props: {data: Data}) {
 
   // read url
   const { lineup } = useParams();
 
   const lineupFromUrl = lineup ? lineup : '';
+  const lineupEntries = getLineupEntries(lineupFromUrl);
 
   let savedActData: EventType[] = [];
 
   // get data of saved acts from cookie
   props.data.locations.forEach((location: Location, index: number) => {
     const filteredEvents: EventType[] = location.events.filter((act: EventType) => {
-      // split lineup string into array
-      const lineupArray = lineupFromUrl.split('-');
       const currentAct = `act_${act.short}`;
-      return lineupArray.includes(currentAct);
+      return lineupEntries.has(currentAct);
     });
 
     if(filteredEvents.length > 0) {
