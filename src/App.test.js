@@ -58,6 +58,23 @@ test('renders app title', async () => {
   expect(linkElement).toBeInTheDocument();
 });
 
+test('shows "My CityJS" in the navigation menu', async () => {
+  fetch.mockResolvedValueOnce({
+    ok: true,
+    json: async () => mockScheduleResponse,
+  });
+
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+
+  await waitFor(() => {
+    expect(screen.getByRole('link', { name: /My CityJS/i })).toBeInTheDocument();
+  });
+});
+
 test('loads bundled CityJS schedule JSON', async () => {
   fetch.mockResolvedValueOnce({
     ok: true,
