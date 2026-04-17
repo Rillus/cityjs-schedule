@@ -19,6 +19,23 @@ const Url = {
         .replace(/^-+|-+(?=-|$)/g, '')
     );
 
+  },
+
+  /**
+   * Normalise a path segment for comparison. `safeName` percent-encodes non-ASCII
+   * characters, but React Router's `useParams()` returns decoded values, so direct
+   * equality with `safeName(...)` fails for titles containing em dashes and similar.
+   */
+  decodePathSlug: function(param) {
+    if (param == null || param === '') {
+      return '';
+    }
+    const s = String(param);
+    try {
+      return decodeURIComponent(s);
+    } catch (e) {
+      return s;
+    }
   }
 }
 

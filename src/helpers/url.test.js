@@ -23,3 +23,23 @@ describe('formatUrl', () => {
     expect(Url.safeName(123)).toEqual('');
   });
 });
+
+describe('decodePathSlug', () => {
+  it('lets session detail routes match titles whose safeName used encodeURIComponent', () => {
+    const title = 'Start of Track 1 — Sara Vieira';
+    const slugFromLink = Url.safeName(title);
+    const asRouterParam = Url.decodePathSlug(slugFromLink);
+    expect(
+      Url.decodePathSlug(Url.safeName(title)) === Url.decodePathSlug(asRouterParam)
+    ).toBe(true);
+  });
+
+  it('returns an empty string for nullish params', () => {
+    expect(Url.decodePathSlug(null)).toEqual('');
+    expect(Url.decodePathSlug(undefined)).toEqual('');
+  });
+
+  it('returns the original string when decoding throws', () => {
+    expect(Url.decodePathSlug('%')).toEqual('%');
+  });
+});

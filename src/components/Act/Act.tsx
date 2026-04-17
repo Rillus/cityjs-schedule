@@ -28,7 +28,9 @@ function Act(props: { data: Data }) {
     });
 
     const acts: EventType[] = locationEvents
-      .filter((event: EventType) => Url.safeName(event.name) === url);
+      .filter((event: EventType) =>
+        Url.decodePathSlug(Url.safeName(event.name)) === Url.decodePathSlug(url)
+      );
 
     if (acts.length > 0) {
       setAct(acts[0]);

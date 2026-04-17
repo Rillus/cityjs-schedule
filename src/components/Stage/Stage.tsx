@@ -27,7 +27,7 @@ function Stage(props: {data: Data}) {
     });
 
     const matchingStage: Location = stages.filter((stage, index) => {
-      if (Url.safeName(stage.name) === url) {
+      if (Url.decodePathSlug(Url.safeName(stage.name)) === Url.decodePathSlug(url)) {
         return {
           id: stage.id,
           url: url,
