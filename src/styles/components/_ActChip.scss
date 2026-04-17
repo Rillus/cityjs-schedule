@@ -1,7 +1,9 @@
 @import "../variables";
 
 .ActChip {
+  position: relative;
   display: inline-flex;
+  align-items: center;
   margin: $spacer/3 0;
   padding: calc($spacer / 4) calc($spacer / 4);
   border-radius: 5px;
@@ -10,6 +12,11 @@
   background: $light-gradient;
 
   &-button {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     padding: 0 $spacer/2;
     margin: 0 calc($spacer/2) 0 0;
     font-size: 1.2rem;
@@ -18,6 +25,9 @@
     color: var(--white);
     cursor: pointer;
     border: 1px solid transparent;
+    min-width: 44px;
+    min-height: 44px;
+    box-sizing: border-box;
 
     &.isSelected {
       background: var(--currentContrast);
@@ -31,8 +41,9 @@
 
   a {
     color: $white;
-    display: inline-block;
-    width: 100%;
+    display: block;
+    flex: 1;
+    min-width: 0;
     text-decoration: none;
     align-self: center;
   }

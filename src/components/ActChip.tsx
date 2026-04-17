@@ -1,5 +1,5 @@
 import Url from "../helpers/url";
-import {useEffect, useState} from "react";
+import {useEffect, useState, type MouseEvent} from "react";
 import {Link} from "react-router-dom";
 
 export default function ActChip(props: { name: string, short: string, isSelected?: boolean}) {
@@ -18,7 +18,9 @@ export default function ActChip(props: { name: string, short: string, isSelected
     }
   }, [props.short]);
 
-  function addToLineup() {
+  function addToLineup(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
     if (!isSelected) {
       localStorage.setItem(`act_${props.short}`, 'true');
       setIsSelected(true);
@@ -34,6 +36,7 @@ export default function ActChip(props: { name: string, short: string, isSelected
     <span className="ActChip">
       {user && (
         <button
+          type="button"
           className={`ActChip-button ${isSelected ? 'isSelected' : ''}`}
           aria-label={isSelected ? 'Remove from schedule' : 'Add to schedule'}
           onClick={addToLineup}>

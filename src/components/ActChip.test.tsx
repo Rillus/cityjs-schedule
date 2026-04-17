@@ -23,6 +23,15 @@ describe('ActChip', () => {
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
+  it('uses a plain button type so mobile taps never behave like a submit control', () => {
+    render(
+      <BrowserRouter>
+        <ActChip short="TST" isSelected={false} name="Test" />
+      </BrowserRouter>
+    );
+    expect(screen.getByLabelText('Add to schedule')).toHaveAttribute('type', 'button');
+  });
+
   it('toggles the selected state when clicked', () => {
     render(
       <BrowserRouter>

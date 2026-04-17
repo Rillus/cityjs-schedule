@@ -29,6 +29,11 @@ body {
     color: var(--backgroundContrast);
     margin: 0;
 
+    // `background-attachment: fixed` jitters and repaints badly on mobile Safari when scrolling
+    // or when the browser chrome shows and hides; use a normal scroll attachment on narrow viewports.
+    @media (max-width: $break-md) {
+        background-attachment: scroll;
+    }
 }
 
 a {
