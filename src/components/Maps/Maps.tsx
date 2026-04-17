@@ -63,6 +63,23 @@ function Maps() {
           </p>
         </section>
 
+        <section className={styles.section} aria-labelledby="plans-heading">
+          <h2 id="plans-heading" className={styles.subheading}>
+            Building plans
+          </h2>
+          <p>
+            For orientation before you arrive, you can view the{' '}
+            <a href={RIBA_FIRST_FLOOR_PLAN} target="_blank" rel="noopener noreferrer">
+              first-floor plan at RIBA Pix
+            </a>{' '}
+            and the{' '}
+            <a href={RIBA_SITE_PLAN} target="_blank" rel="noopener noreferrer">
+              site plan at RIBA Pix
+            </a>
+            .
+          </p>
+        </section>
+
         <section className={styles.section} aria-labelledby="travel-heading">
           <h2 id="travel-heading" className={styles.subheading}>
             Public transport
