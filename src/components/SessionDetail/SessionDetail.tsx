@@ -28,6 +28,18 @@ export default function SessionDetail(props: { event: EventType }) {
       </p>
     ));
 
+  const notesMarker = "\n\nRiley's Notes:\n";
+  const [sessionDescription, notesBlock] = description
+    ? (description.split(notesMarker) as [string, string?])
+    : ["", undefined];
+  const notesItems = notesBlock
+    ? notesBlock
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line.startsWith("- "))
+        .map((line) => line.slice(2).trim())
+    : [];
+
   return (
     <section className={styles.SessionDetail} aria-label="Session details">
       {image ? (
@@ -40,10 +52,23 @@ export default function SessionDetail(props: { event: EventType }) {
         />
       ) : null}
 
-      {description ? (
+      {sessionDescription ? (
         <div className={styles.SessionDetail_block}>
           <h2 className={styles.SessionDetail_heading}>About this session</h2>
-          <div className={styles.SessionDetail_prose}>{paragraphs(description)}</div>
+          <div className={styles.SessionDetail_prose}>{paragraphs(sessionDescription)}</div>
+        </div>
+      ) : null}
+
+      {notesItems.length > 0 ? (
+        <div className={styles.SessionDetail_block}>
+          <h2 className={styles.SessionDetail_heading}>Riley's Notes</h2>
+          <ul className={styles.SessionDetail_prose}>
+            {notesItems.map((item) => (
+              <li key={item} className={styles.SessionDetail_paragraph}>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
 

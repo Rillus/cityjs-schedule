@@ -35,7 +35,7 @@ describe("SessionDetail", () => {
     );
   });
 
-  it("renders Riley's Notes content in the session description", () => {
+  it("renders Riley's Notes as a separate heading with bullet points", () => {
     const event: EventType = {
       ...baseEvent,
       description:
@@ -44,7 +44,9 @@ describe("SessionDetail", () => {
 
     render(<SessionDetail event={event} />);
 
-    expect(screen.getByText(/Riley's Notes/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /riley's notes/i })).toBeInTheDocument();
+    expect(screen.getByRole("list")).toBeInTheDocument();
     expect(screen.getByText(/Prioritise guardrails around generated UI code/i)).toBeInTheDocument();
+    expect(screen.getByText(/Keep model-driven features behind clear boundaries/i)).toBeInTheDocument();
   });
 });
