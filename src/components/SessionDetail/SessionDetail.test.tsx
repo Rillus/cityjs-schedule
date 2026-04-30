@@ -34,4 +34,17 @@ describe("SessionDetail", () => {
       "https://london.cityjsconf.org/speakers"
     );
   });
+
+  it("renders Riley's Notes content in the session description", () => {
+    const event: EventType = {
+      ...baseEvent,
+      description:
+        "Session abstract.\n\nRiley's Notes:\n- Prioritise guardrails around generated UI code.\n- Keep model-driven features behind clear boundaries.",
+    };
+
+    render(<SessionDetail event={event} />);
+
+    expect(screen.getByText(/Riley's Notes/i)).toBeInTheDocument();
+    expect(screen.getByText(/Prioritise guardrails around generated UI code/i)).toBeInTheDocument();
+  });
 });
